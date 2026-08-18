@@ -1,0 +1,60 @@
+/* ==========================================================================
+   Eastwood Global — Color Tokens
+   Apple Green is the lead identity colour. Deep Blue carries structural and
+   network / co-branded contexts. Secondary colours are accents only.
+   ========================================================================== */
+:root {
+  /* --- Primary --------------------------------------------------------- */
+  --eg-deep-blue: #000077;   /* structural dark, hero fields, quote panels   */
+  --eg-apple-green: #BDD100; /* lead accent, primary CTAs, key numerals       */
+  --eg-black: #000000;
+
+  /* --- Secondary (accent only, used sparingly) ------------------------- */
+  --eg-blue-purple: #5254BE;
+  --eg-sky-blue: #059FD5;
+  --eg-forest-green: #006242;
+  --eg-yellow: #E1B437;
+  --eg-raspberry: #C84A75;
+  --eg-moonrock: #65A6BA;
+
+  /* --- Neutrals -------------------------------------------------------- */
+  --eg-white: #FFFFFF;
+  --eg-paper: #F6F7F2;        /* off-white page field, warm-neutral          */
+  --eg-mist: #ECEEE4;         /* subtle fill / hairline field                */
+  --eg-ink-60: #4A4A55;       /* secondary text on light                     */
+  --eg-ink-40: #8A8A93;       /* muted text / captions                       */
+  --eg-line: #DADCCF;         /* hairline / rule                             */
+
+  /* Deep Blue tint ramp (from artwork sheet — reversed panels, duotone)   */
+  --eg-deep-blue-90: #19198a;
+  --eg-deep-blue-70: #4c4cae;
+  --eg-deep-blue-40: #9999cf;
+  --eg-deep-blue-10: #e6e6f1;
+
+  /* Apple Green tint ramp                                                  */
+  --eg-apple-green-70: #cede4d;
+  --eg-apple-green-40: #e2ec99;
+  --eg-apple-green-10: #f5f8dd;
+
+  /* --- Semantic aliases ------------------------------------------------ */
+  --surface-page: var(--eg-white);
+  --surface-paper: var(--eg-paper);
+  --surface-structural: var(--eg-deep-blue);   /* hero / quote panels        */
+  --surface-card: var(--eg-white);
+  --surface-fill: var(--eg-mist);
+
+  --text-heading: var(--eg-deep-blue);
+  --text-body: #1A1A22;
+  --text-muted: var(--eg-ink-60);
+  --text-caption: var(--eg-ink-40);
+  --text-on-dark: var(--eg-white);
+  --text-on-green: var(--eg-deep-blue);         /* NEVER green text on white  */
+
+  --accent-lead: var(--eg-apple-green);         /* CTAs, numerals, highlights */
+  --accent-structural: var(--eg-deep-blue);
+
+  --border-default: var(--eg-line);
+  --border-strong: var(--eg-deep-blue);
+
+  --focus-ring: var(--eg-deep-blue);
+}

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eastwood Global x GOSU Academy | Where Ambitions Level Up</title>
+<meta name="description" content="You were never meant to choose between the game and the grade. Eastwood Global has partnered with GOSU Academy to bring real esports coaching into a real academic education.">
+<link rel="icon" href="assets/favicon-eg.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Eastwood Global Online School">
+<meta property="og:title" content="Eastwood Global x GOSU Academy | Where Ambitions Level Up">
+<meta property="og:description" content="You were never meant to choose between the game and the grade. Eastwood Global has partnered with GOSU Academy to bring real esports coaching into a real academic education.">
+<meta property="og:url" content="https://gosu.eastwood.global/">
+<meta property="og:image" content="https://gosu.eastwood.global/assets/og-eg-gosu.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="An Eastwood Global student competing at a gaming setup, with the Eastwood Global and GOSU Academy lockup on screen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Eastwood Global x GOSU Academy | Where Ambitions Level Up">
+<meta name="twitter:description" content="You were never meant to choose between the game and the grade.">
+<meta name="twitter:image" content="https://gosu.eastwood.global/assets/og-eg-gosu.png">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/interactions.css">
+<style>
+
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { margin: 0; background: #000077; font-family: 'Inter', system-ui, sans-serif; }
+  a { color: #BDD100; text-decoration: none; }
+  a:hover { color: #ffffff; }
+  * { box-sizing: border-box; }
+  [data-quadgrid] { display: grid; grid-template-columns: 1fr !important; }
+  @media (min-width: 560px) { [data-quadgrid] { grid-template-columns: repeat(2, 1fr) !important; } }
+  @media (min-width: 1200px) { [data-quadgrid] { grid-template-columns: repeat(4, 1fr) !important; } }
+  [data-stickybar] .eg-btn { min-height: 48px !important; padding-top: 12px !important; padding-bottom: 12px !important; }
+  [data-hero="wide"] { display: none !important; }
+  @media (min-width: 768px) {
+    [data-hero="wide"] { display: flex !important; }
+    [data-hero="tall"] { display: none !important; }
+  }
+  @keyframes egSettle { from { transform: scale(1.06); } to { transform: scale(1); } }
+  @keyframes egDrift { from { background-position: 0 0; } to { background-position: 240px 0; } }
+
+  [data-motion="on"] [data-reveal] { transition-timing-function: cubic-bezier(.16,.84,.44,1); }
+  [data-motion="on"] [data-reveal="up"] { transition-property: opacity, transform; transition-duration: 600ms; }
+  [data-motion="on"] [data-reveal="up"]:not([data-revealed]) { opacity: 0; transform: translateY(20px); }
+  [data-motion="on"] [data-reveal="type"] { transition-property: opacity, transform; transition-duration: 980ms; }
+  [data-motion="on"] [data-reveal="type"]:not([data-revealed]) { opacity: 0; transform: translateY(34px); }
+  [data-motion="on"] [data-reveal="word"] { transition-property: opacity, transform; transition-duration: 700ms; }
+  [data-motion="on"] [data-reveal="word"]:not([data-revealed]) { opacity: 0; transform: translateY(24px); }
+  [data-motion="on"] [data-reveal="fade"] { transition-property: opacity; transition-duration: 900ms; }
+  [data-motion="on"] [data-reveal="fade"]:not([data-revealed]) { opacity: 0; }
+  [data-motion="on"] [data-reveal="rule"] { transition-property: transform; transition-duration: 900ms; transform-origin: left center; }
+  [data-motion="on"] [data-reveal="rule"]:not([data-revealed]) { transform: scaleX(0); }
+  [data-motion="on"] [data-reveal="hair"] { transition-property: transform; transition-duration: 400ms; transform-origin: left center; }
+  [data-motion="on"] [data-reveal="hair"]:not([data-revealed]) { transform: scaleX(0); }
+  [data-motion="on"] [data-reveal][data-dur="400"] { transition-duration: 400ms; }
+  [data-motion="on"] [data-reveal][data-dur="500"] { transition-duration: 500ms; }
+  [data-motion="on"] [data-reveal][data-delay="60"] { transition-delay: 60ms; }
+  [data-motion="on"] [data-reveal][data-delay="80"] { transition-delay: 80ms; }
+  [data-motion="on"] [data-reveal][data-delay="90"] { transition-delay: 90ms; }
+  [data-motion="on"] [data-reveal][data-delay="120"] { transition-delay: 120ms; }
+  [data-motion="on"] [data-reveal][data-delay="160"] { transition-delay: 160ms; }
+  [data-motion="on"] [data-reveal][data-delay="170"] { transition-delay: 170ms; }
+  [data-motion="on"] [data-reveal][data-delay="180"] { transition-delay: 180ms; }
+  [data-motion="on"] [data-reveal][data-delay="200"] { transition-delay: 200ms; }
+  [data-motion="on"] [data-reveal][data-delay="220"] { transition-delay: 220ms; }
+  [data-motion="on"] [data-reveal][data-delay="240"] { transition-delay: 240ms; }
+  [data-motion="on"] [data-reveal][data-delay="270"] { transition-delay: 270ms; }
+  [data-motion="on"] [data-reveal][data-delay="280"] { transition-delay: 280ms; }
+  [data-motion="on"] [data-reveal][data-delay="300"] { transition-delay: 300ms; }
+  [data-motion="on"] [data-reveal][data-delay="320"] { transition-delay: 320ms; }
+  [data-motion="on"] [data-reveal][data-delay="340"] { transition-delay: 340ms; }
+  [data-motion="on"] [data-reveal][data-delay="360"] { transition-delay: 360ms; }
+  [data-motion="on"] [data-reveal][data-delay="400"] { transition-delay: 400ms; }
+  [data-motion="on"] [data-reveal="tag"] > span:first-child { transition: width 400ms cubic-bezier(.16,.84,.44,1); }
+  [data-motion="on"] [data-reveal="tag"]:not([data-revealed]) > span:first-child { width: 0 !important; }
+  [data-motion="on"] [data-reveal="tag"] > span:nth-child(2) { transition: opacity 300ms cubic-bezier(.16,.84,.44,1) 200ms; }
+  [data-motion="on"] [data-reveal="tag"]:not([data-revealed]) > span:nth-child(2) { opacity: 0; }
+  [data-motion="on"] img[data-photo] { transition: filter 800ms cubic-bezier(.16,.84,.44,1), transform 800ms cubic-bezier(.16,.84,.44,1); }
+  [data-motion="on"] [data-reveal]:not([data-revealed]) img[data-photo] { filter: saturate(0) !important; transform: scale(1.04); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
+    [data-motion="on"] [data-reveal]:not([data-revealed]) { opacity: 1 !important; transform: none !important; }
+    [data-motion="on"] [data-reveal="tag"]:not([data-revealed]) > span:first-child { width: 32px !important; }
+    [data-motion="on"] [data-reveal="tag"]:not([data-revealed]) > span:nth-child(2) { opacity: 1 !important; }
+    [data-motion="on"] [data-reveal]:not([data-revealed]) img[data-photo] { filter: saturate(0.3) !important; transform: none !important; }
+  }
+  @keyframes egCue { 0% { transform: scaleY(0); transform-origin: top; opacity: 0; } 40% { transform: scaleY(1); transform-origin: top; opacity: 1; } 60% { transform: scaleY(1); transform-origin: bottom; opacity: 1; } 100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; } }
+
+  .eg-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px;
+    font-family: var(--font-sans); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1;
+    white-space: nowrap; text-decoration: none; cursor: pointer; border-radius: 999px;
+    background: var(--eg-apple-green); color: var(--eg-deep-blue); border: 2px solid var(--eg-apple-green);
+    transition: background 200ms cubic-bezier(.2,0,.2,1), border-color 200ms cubic-bezier(.2,0,.2,1), transform 120ms cubic-bezier(.2,0,.2,1); }
+  .eg-btn:hover { background: #a8bb00; border-color: #a8bb00; color: var(--eg-deep-blue); }
+  .eg-btn:active { transform: translateY(1px); }
+  .eg-btn:focus-visible { outline: 3px solid var(--eg-white); outline-offset: 3px; }
+  .eg-btn--sm { padding: 12px 22px; font-size: 13px; }
+  .eg-btn--lg { padding: 16px 32px; font-size: 15px; }
+  .eg-btn--xl { padding: 22px 46px; font-size: 15px; letter-spacing: 0.14em; }
+</style>
+</head>
+<body>
+<div role="main" style="background: var(--eg-deep-blue); color: var(--eg-white); overflow-x: hidden;">
+
+  <div data-progress="1" style="position: fixed; top: 0; left: 0; z-index: 70; height: 2px; width: 0%; background: var(--eg-apple-green);"></div>
+
+  <div data-stickybar="1" style="position: fixed; top: 0; left: 0; right: 0; z-index: 60; transform: translateY(-110%); transition: transform 520ms cubic-bezier(.16,.84,.44,1); background: var(--eg-deep-blue); border-bottom: 1px solid rgba(255,255,255,0.16); padding: clamp(12px, 1.2vw, 16px) clamp(24px, 5vw, 80px);">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+    <img src="assets/eg-gosu-lockup.png" alt="Eastwood Global and GOSU Academy" style="display: block; flex: none; height: clamp(46px, 4.4vw, 64px); width: auto; mix-blend-mode: screen;">
+    <a class="eg-btn eg-btn--sm" href="https://www.eastwood.global/enquire-now-form?utm_source=gosu&utm_medium=landing&utm_content=mid" target="_blank" rel="noopener noreferrer">Book a Discovery Call</a>
+    </div>
+  </div>
+
+  <section data-hero="wide" data-screen-label="Hero" style="position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: max(600px, min(100svh, 980px)); padding: clamp(28px, 4vw, 56px) clamp(24px, 5vw, 80px) clamp(40px, 5vw, 72px); overflow: hidden; isolation: isolate;">
+    <div style="position: absolute; inset: 0; z-index: -2; overflow: hidden;">
+      <img data-herozoom="1" fetchpriority="high" decoding="async" src="assets/eg-gosu-main-visual.png" alt="An Eastwood Global student competing at a gaming setup, with the Eastwood Global and GOSU Academy lockup on screen" style="width: 100%; height: 100%; object-fit: cover; object-position: 60% center; display: block; animation: egSettle 1400ms cubic-bezier(.16,.84,.44,1) both;">
+    </div>
+    <div style="position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0,0,119,0.80) 0%, rgba(0,0,119,0.30) 26%, rgba(0,0,119,0.28) 44%, rgba(0,0,119,0.88) 76%, rgba(0,0,119,0.97) 100%);"></div>
+    <div style="position: absolute; inset: 0; z-index: -1; background: linear-gradient(95deg, rgba(0,0,119,0.72) 0%, rgba(0,0,119,0.38) 34%, rgba(0,0,119,0.06) 58%, rgba(0,0,119,0) 76%);"></div>
+
+    <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;">
+      <img data-reveal="up" src="assets/eg-gosu-lockup.png" alt="Eastwood Global and GOSU Academy co-brand lockup" style="display: block; align-self: flex-start; flex: none; height: clamp(64px, 7.2vw, 116px); width: auto; mix-blend-mode: screen;">
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: clamp(28px, 4vw, 64px);">
+      <div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: clamp(18px, 2.2vw, 30px);">
+        <div data-reveal="tag" style="display: flex; align-items: center; gap: 14px;">
+          <span style="flex: none; width: 32px; height: 2px; background: var(--eg-white);"></span>
+          <span style="font-family: 'Inter', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--eg-white); white-space: nowrap;">Eastwood Global // GOSU Academy</span>
+        </div>
+        <h1 style="margin: 0; max-width: 15ch; font-weight: 700; font-size: clamp(52px, 8.2vw, 132px); line-height: 0.88; letter-spacing: -0.045em; color: var(--eg-white); text-wrap: balance; display: flex; flex-wrap: wrap; gap: 0 0.26em;" aria-label="Where Ambitions Level Up"><span data-reveal="word" data-delay="0" style="display: inline-block;">Where </span><span data-reveal="word" data-delay="80" style="display: inline-block;">Ambitions </span><span data-reveal="word" data-delay="160" style="display: inline-block;">Level Up</span></h1>
+      </div>
+      <div style="flex: 0 1 400px; display: flex; flex-direction: column; align-items: flex-start; gap: clamp(20px, 2.4vw, 30px); padding-bottom: 6px;">
+        <p data-reveal="up" data-delay="180" style="margin: 0; max-width: 34ch; font-weight: 400; font-size: clamp(18px, 1.6vw, 25px); line-height: 1.42; color: rgba(255,255,255,0.84); text-wrap: pretty;">You were never meant to choose between the game and the grade.</p>
+        <div data-reveal="up" data-delay="320" data-dur="500">
+          <a class="eg-btn eg-btn--lg" href="https://www.eastwood.global/enquire-now-form?utm_source=gosu&utm_medium=landing&utm_content=hero" target="_blank" rel="noopener noreferrer">Book a Discovery Call</a>
+        </div>
+      </div>
+    </div>
+    <div aria-hidden="true" data-cue="1" style="position: absolute; left: clamp(24px, 5vw, 80px); bottom: 0; width: 1px; height: clamp(28px, 4vw, 48px); background: var(--eg-apple-green); animation: egCue 2800ms cubic-bezier(.5,0,.5,1) infinite;"></div>
+  </section>
+
+  <section data-hero="tall" data-screen-label="Hero" style="position: relative; display: flex; flex-direction: column; background: var(--eg-deep-blue);">
+    <div style="position: relative; width: 100%; aspect-ratio: 25 / 27; overflow: hidden;">
+      <img data-herozoom="1" fetchpriority="high" decoding="async" src="assets/eg-gosu-hero-tall.png" alt="An Eastwood Global student competing at a gaming setup" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; animation: egSettle 1400ms cubic-bezier(.16,.84,.44,1) both;">
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,119,0.72) 0%, rgba(0,0,119,0.10) 34%, rgba(0,0,119,0.42) 74%, rgba(0,0,119,1) 100%);"></div>
+      <img data-reveal="up" src="assets/eg-gosu-lockup.png" alt="Eastwood Global and GOSU Academy co-brand lockup" style="position: absolute; top: 24px; left: 24px; display: block; height: 56px; width: auto; mix-blend-mode: screen;">
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 22px; padding: 32px 24px 56px;">
+      <div data-reveal="tag" style="display: flex; align-items: center; gap: 14px;">
+        <span style="flex: none; width: 32px; height: 2px; background: var(--eg-white);"></span>
+        <span style="font-family: 'Inter', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--eg-white); white-space: nowrap;">Eastwood Global // GOSU Academy</span>
+      </div>
+      <h1 style="margin: 0; font-weight: 700; font-size: clamp(46px, 13vw, 62px); line-height: 0.9; letter-spacing: -0.04em; color: var(--eg-white); display: flex; flex-wrap: wrap; gap: 0 0.26em;" aria-label="Where Ambitions Level Up"><span data-reveal="word" data-delay="0" style="display: inline-block;">Where </span><span data-reveal="word" data-delay="80" style="display: inline-block;">Ambitions </span><span data-reveal="word" data-delay="160" style="display: inline-block;">Level Up</span></h1>
+      <p data-reveal="up" data-delay="180" style="margin: 0; max-width: 30ch; font-weight: 400; font-size: 18px; line-height: 1.45; color: rgba(255,255,255,0.84); text-wrap: pretty;">You were never meant to choose between the game and the grade.</p>
+      <div data-reveal="up" data-delay="320" data-dur="500">
+        <a class="eg-btn eg-btn--lg" href="https://www.eastwood.global/enquire-now-form?utm_source=gosu&utm_medium=landing&utm_content=hero" target="_blank" rel="noopener noreferrer">Book a Discovery Call</a>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Partnership" style="position: relative; padding: clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px); background: var(--eg-deep-blue);">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: clamp(32px, 5vw, 88px);">
+      <div style="display: flex; flex-direction: column; gap: clamp(22px, 2.6vw, 34px);">
+        <div data-reveal="tag" style="display: flex; align-items: center; gap: 14px;">
+          <span style="flex: none; width: 32px; height: 2px; background: var(--eg-apple-green);"></span>
+          <span style="font-family: 'Inter', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--eg-apple-green); white-space: nowrap;">Eastwood Global // The Partnership</span>
+        </div>
+        <h2 data-reveal="type" data-delay="80" style="margin: 0; font-weight: 700; font-size: clamp(38px, 5vw, 76px); line-height: 0.94; letter-spacing: -0.042em; color: var(--eg-white);">Real school. <br>Real rank.</h2>
+        <div aria-hidden="true" data-reveal="up" data-delay="200" style="display: grid; grid-template-columns: repeat(4, 12px); gap: 6px; margin-top: clamp(8px, 2vw, 24px);">
+          <span style="height: 12px; background: var(--eg-apple-green);"></span>
+          <span style="height: 12px; background: var(--eg-apple-green); opacity: 0.7;"></span>
+          <span style="height: 12px; background: var(--eg-apple-green); opacity: 0.4;"></span>
+          <span style="height: 12px; background: var(--eg-apple-green); opacity: 0.16;"></span>
+          <span style="height: 12px; background: var(--eg-apple-green); opacity: 0.7;"></span>
+          <span style="height: 12px; background: var(--eg-apple-green); opacity: 0.4;"></span>
+          <span style="height: 12px; background: var(--eg-apple-green); opacity: 0.16;"></span>
+          <span style="height: 12px; background: transparent;"></span>
+          <span style="height: 12px; background: var(--eg-apple-green); opacity: 0.4;"></span>
+          <span style="height: 12px; background: var(--eg-apple-green); opacity: 0.16;"></span>
+          <span style="height: 12px; background: transparent;"></span>
+          <span style="height: 12px; background: transparent;"></span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 26px; padding-top: clamp(0px, 1vw, 12px);">
+        <p data-reveal="up" data-delay="120" style="margin: 0; max-width: 46ch; font-weight: 400; font-size: clamp(19px, 1.75vw, 27px); line-height: 1.42; letter-spacing: -0.012em; color: rgba(255,255,255,0.94); text-wrap: pretty;">Eastwood Global has partnered with GOSU Academy, a global leader in esports and gaming education that has trained more than 35,000 students across the GCC, North America, Europe and India. GOSU Academy is now the official esports education partner for Eastwood Global, delivering the full esports curriculum, coaching, and community program to Eastwood students.</p>
+        <p data-reveal="up" data-delay="200" style="margin: 0; max-width: 60ch; font-weight: 400; font-size: clamp(16px, 1.2vw, 18px); line-height: 1.62; color: rgba(255,255,255,0.66); text-wrap: pretty;">This is not a new elective bolted onto an existing timetable. It is the same model Eastwood Global already built for its elite student athletes: live small classes, flexible scheduling, and a structure that works around a student's training calendar rather than against it. Now extended to competitive gamers.</p>
+      </div>
+    </div>
+  </section>
+
+  <div aria-hidden="true" style="position: relative; height: clamp(46px, 5vw, 72px); background: var(--eg-deep-blue); overflow: hidden;">
+    <div data-drift="1" style="position: absolute; inset: 0; background-image: url('assets/pattern-slash-dark.png'); background-size: 120px 60px; background-repeat: repeat; opacity: 0.45; animation: egDrift 34s linear infinite;"></div>
+  </div>
+
+  <section data-screen-label="What You Get" style="padding: clamp(52px, 5.6vw, 84px) clamp(24px, 5vw, 80px); background: var(--eg-white); color: var(--eg-deep-blue);">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(18px, 2vw, 26px);">
+      <div data-reveal="tag" style="display: flex; align-items: center; gap: 14px;">
+        <span style="flex: none; width: 32px; height: 2px; background: var(--eg-apple-green);"></span>
+        <span style="font-family: 'Inter', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--eg-deep-blue); white-space: nowrap;">Eastwood Global // What You Get</span>
+      </div>
+      <div>
+        <div data-reveal="rule" style="height: 3px; background: var(--eg-apple-green);"></div>
+        <div data-quadgrid="1" style="display: grid; gap: 1px; background: var(--border-default);">
+          <div class="eg-x1" data-reveal="up" data-delay="0" style="min-width: 0; background-color: var(--eg-white); background-image: linear-gradient(var(--eg-apple-green), var(--eg-apple-green)); background-repeat: no-repeat; background-position: left top; background-size: 1px 0%; padding: clamp(16px, 1.5vw, 22px) clamp(16px, 1.5vw, 24px) clamp(18px, 1.8vw, 26px); display: flex; flex-direction: column; gap: 8px; position: relative; transition: background-size 300ms ease, background-color 260ms ease, box-shadow 300ms ease, transform 300ms cubic-bezier(.16,.84,.44,1), opacity 600ms cubic-bezier(.16,.84,.44,1) 0ms, transform 600ms cubic-bezier(.16,.84,.44,1) 0ms;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: clamp(4px, 0.6vw, 10px);">
+              <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#000077" stroke-width="1.75" stroke-linecap="square"><path d="M3 21h18"></path><path d="M6.5 21v-6"></path><path d="M12 21V9.5"></path><path d="M17.5 21V4"></path><rect x="15.5" y="2" width="4" height="4" fill="#BDD100" stroke="none"></rect></svg>
+              <span style="font-weight: 700; font-size: 13px; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; color: var(--eg-apple-green);">01</span>
+            </div>
+            <h3 style="margin: 0; font-weight: 700; font-size: clamp(20px, 1.7vw, 26px); line-height: 1.08; letter-spacing: -0.025em; color: var(--eg-deep-blue);">Real school, <br>real rank</h3>
+            <p style="margin: 0; font-weight: 400; font-size: clamp(15px, 1vw, 16px); line-height: 1.5; color: var(--text-muted); text-wrap: pretty;">A fully accredited academic education. Not a gaming club with homework attached. One of only seven schools in the world allowed by the IB to deliver the Diploma fully online.</p>
+          </div>
+          <div class="eg-x2" data-reveal="up" data-delay="90" style="min-width: 0; background-color: var(--eg-white); background-image: linear-gradient(var(--eg-apple-green), var(--eg-apple-green)); background-repeat: no-repeat; background-position: left top; background-size: 1px 0%; padding: clamp(16px, 1.5vw, 22px) clamp(16px, 1.5vw, 24px) clamp(18px, 1.8vw, 26px); display: flex; flex-direction: column; gap: 8px; position: relative; transition: background-size 300ms ease, background-color 260ms ease, box-shadow 300ms ease, transform 300ms cubic-bezier(.16,.84,.44,1), opacity 600ms cubic-bezier(.16,.84,.44,1) 90ms, transform 600ms cubic-bezier(.16,.84,.44,1) 90ms;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: clamp(4px, 0.6vw, 10px);">
+              <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#000077" stroke-width="1.75" stroke-linecap="square"><rect x="3" y="4.5" width="18" height="16.5"></rect><path d="M3 9.5h18"></path><path d="M7.5 4.5V2"></path><path d="M16.5 4.5V2"></path><rect x="12.5" y="12.5" width="5.5" height="5.5" fill="#BDD100" stroke="none"></rect></svg>
+              <span style="font-weight: 700; font-size: 13px; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; color: var(--eg-apple-green);">02</span>
+            </div>
+            <h3 style="margin: 0; font-weight: 700; font-size: clamp(20px, 1.7vw, 26px); line-height: 1.08; letter-spacing: -0.025em; color: var(--eg-deep-blue);">Built around your schedule</h3>
+            <p style="margin: 0; font-weight: 400; font-size: clamp(15px, 1vw, 16px); line-height: 1.5; color: var(--text-muted); text-wrap: pretty;">The timetable moves around training and competition, not the other way around. Live classes, 1:12 class ratio, the same model already used for Eastwood's elite student athletes.</p>
+          </div>
+          <div class="eg-x3" data-reveal="up" data-delay="180" style="min-width: 0; background-color: var(--eg-white); background-image: linear-gradient(var(--eg-apple-green), var(--eg-apple-green)); background-repeat: no-repeat; background-position: left top; background-size: 1px 0%; padding: clamp(16px, 1.5vw, 22px) clamp(16px, 1.5vw, 24px) clamp(18px, 1.8vw, 26px); display: flex; flex-direction: column; gap: 8px; position: relative; transition: background-size 300ms ease, background-color 260ms ease, box-shadow 300ms ease, transform 300ms cubic-bezier(.16,.84,.44,1), opacity 600ms cubic-bezier(.16,.84,.44,1) 180ms, transform 600ms cubic-bezier(.16,.84,.44,1) 180ms;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: clamp(4px, 0.6vw, 10px);">
+              <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#000077" stroke-width="1.75" stroke-linecap="square"><path d="M4 15.5V13a8 8 0 0 1 16 0v2.5"></path><rect x="2" y="14.5" width="4.5" height="6.5"></rect><rect x="17.5" y="14.5" width="4.5" height="6.5"></rect><circle cx="12" cy="12.5" r="2.4" fill="#BDD100" stroke="none"></circle></svg>
+              <span style="font-weight: 700; font-size: 13px; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; color: var(--eg-apple-green);">03</span>
+            </div>
+            <h3 style="margin: 0; font-weight: 700; font-size: clamp(20px, 1.7vw, 26px); line-height: 1.08; letter-spacing: -0.025em; color: var(--eg-deep-blue);">Coached by people who play</h3>
+            <p style="margin: 0; font-weight: 400; font-size: clamp(15px, 1vw, 16px); line-height: 1.5; color: var(--text-muted); text-wrap: pretty;">Esports coaching from GOSU-certified instructors who have played and coached at a real competitive level.</p>
+          </div>
+          <div class="eg-x4" data-reveal="up" data-delay="270" style="min-width: 0; background-color: var(--eg-white); background-image: linear-gradient(var(--eg-apple-green), var(--eg-apple-green)); background-repeat: no-repeat; background-position: left top; background-size: 1px 0%; padding: clamp(16px, 1.5vw, 22px) clamp(16px, 1.5vw, 24px) clamp(18px, 1.8vw, 26px); display: flex; flex-direction: column; gap: 8px; position: relative; transition: background-size 300ms ease, background-color 260ms ease, box-shadow 300ms ease, transform 300ms cubic-bezier(.16,.84,.44,1), opacity 600ms cubic-bezier(.16,.84,.44,1) 270ms, transform 600ms cubic-bezier(.16,.84,.44,1) 270ms;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: clamp(4px, 0.6vw, 10px);">
+              <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#000077" stroke-width="1.75" stroke-linecap="square"><rect x="2.5" y="3" width="7" height="7"></rect><rect x="14.5" y="3" width="7" height="7"></rect><rect x="8.5" y="14" width="7" height="7"></rect><path d="M6 10v2h12v-2"></path><path d="M12 12v2"></path></svg>
+              <span style="font-weight: 700; font-size: 13px; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; color: var(--eg-apple-green);">04</span>
+            </div>
+            <h3 style="margin: 0; font-weight: 700; font-size: clamp(20px, 1.7vw, 26px); line-height: 1.08; letter-spacing: -0.025em; color: var(--eg-deep-blue);">A squad, not <br>just a class</h3>
+            <p style="margin: 0; font-weight: 400; font-size: clamp(15px, 1vw, 16px); line-height: 1.5; color: var(--text-muted); text-wrap: pretty;">A branded online community with weekly gaming events and mini-tournaments for every enrolled student.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="The Coaches" style="padding: clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px); background: var(--eg-white); color: var(--eg-deep-blue);">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(34px, 4vw, 56px);">
+      <div style="display: flex; flex-direction: column; gap: clamp(18px, 2vw, 28px);">
+        <div data-reveal="tag" style="display: flex; align-items: center; gap: 14px;">
+          <span style="flex: none; width: 32px; height: 2px; background: var(--eg-apple-green);"></span>
+          <span style="font-family: 'Inter', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--eg-deep-blue); white-space: nowrap;">Eastwood Global // The Coaches</span>
+        </div>
+        <h2 data-reveal="up" data-delay="60" style="margin: 0; max-width: 20ch; font-weight: 700; font-size: clamp(36px, 4.6vw, 68px); line-height: 0.96; letter-spacing: -0.042em; color: var(--eg-deep-blue);">Coached by people who play</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: clamp(32px, 5vw, 80px);">
+        <div data-reveal="up" data-delay="0" style="display: flex; flex-direction: column; gap: 0;">
+          <div style="aspect-ratio: 1 / 1; width: 100%; background: var(--eg-paper); overflow: hidden;">
+            <img data-photo="1" loading="lazy" decoding="async" width="2074" height="2074" src="assets/lukas-sankala-sq.png" alt="Lukas Sankala, Head of Esports and Operations at GOSU Academy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; filter: saturate(0.3);">
+          </div>
+          <h3 style="margin: clamp(20px, 2.2vw, 28px) 0 0; font-weight: 700; font-size: clamp(24px, 2.2vw, 32px); line-height: 1.08; letter-spacing: -0.028em; color: var(--eg-deep-blue);">Lukas Sankala</h3>
+          <p style="margin: 10px 0 0; font-weight: 600; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; line-height: 1.5; color: var(--eg-apple-green);">Head of Esports and Operations | GOSU Academy</p>
+          <span aria-hidden="true" style="display: block; height: 1px; background: var(--eg-apple-green); margin: clamp(14px, 1.6vw, 20px) 0 clamp(16px, 1.8vw, 22px);"></span>
+          <p style="margin: 0; max-width: 46ch; font-weight: 400; font-size: clamp(16px, 1.1vw, 17px); line-height: 1.55; color: var(--text-muted); text-wrap: pretty;">Former professional FPS coach and one of the first esports teachers in Scandinavia at senior high school level. More than a decade across esports coaching and education, with tailored coaching programs designed for more than 25 American universities.</p>
+        </div>
+        <div data-reveal="up" data-delay="120" style="display: flex; flex-direction: column; gap: 0;">
+          <div style="aspect-ratio: 1 / 1; width: 100%; background: var(--eg-paper); overflow: hidden;">
+            <img data-photo="1" loading="lazy" decoding="async" width="1717" height="1717" src="assets/sebi-andras-sq.png" alt="Sebestyén András, Lead CS2 Coach at GOSU Academy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; filter: saturate(0.3);">
+          </div>
+          <h3 style="margin: clamp(20px, 2.2vw, 28px) 0 0; font-weight: 700; font-size: clamp(24px, 2.2vw, 32px); line-height: 1.08; letter-spacing: -0.028em; color: var(--eg-deep-blue);">Sebestyén "sebi" András</h3>
+          <p style="margin: 10px 0 0; font-weight: 600; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; line-height: 1.5; color: var(--eg-apple-green);">Lead CS2 Coach | GOSU Academy</p>
+          <span aria-hidden="true" style="display: block; height: 1px; background: var(--eg-apple-green); margin: clamp(14px, 1.6vw, 20px) 0 clamp(16px, 1.8vw, 22px);"></span>
+          <p style="margin: 0; max-width: 46ch; font-weight: 400; font-size: clamp(16px, 1.1vw, 17px); line-height: 1.55; color: var(--text-muted); text-wrap: pretty;">Eighteen years as a professional player, coach and analyst, including work with ENCE. Still an active player, and now runs the largest regional CS2 academy in Central Europe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Proof Band" style="position: relative; padding: clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px); background: var(--eg-deep-blue); overflow: hidden;">
+    <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; background-image: url('assets/stat-band-bg.png'); background-size: cover; background-position: center; opacity: 0.2;"></div>
+    <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; background: rgba(0,0,119,0.9);"></div>
+    <div style="position: relative; z-index: 1; max-width: 1200px; margin: 0 auto;">
+      <div style="display: flex; flex-direction: column; gap: clamp(16px, 1.8vw, 24px); margin-bottom: clamp(34px, 4vw, 56px);">
+        <div data-reveal="tag" style="display: flex; align-items: center; gap: 14px;">
+          <span style="flex: none; width: 32px; height: 2px; background: var(--eg-apple-green);"></span>
+          <span style="font-family: 'Inter', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--eg-apple-green); white-space: nowrap;">Eastwood Global // The Record</span>
+        </div>
+        <h2 data-reveal="up" data-delay="60" style="margin: 0; max-width: 22ch; font-weight: 700; font-size: clamp(36px, 4.6vw, 68px); line-height: 0.96; letter-spacing: -0.042em; color: var(--eg-white);">The academics <br>hold up under scrutiny</h2>
+      </div>
+      <div data-reveal="rule" style="height: 2px; background: var(--eg-apple-green);"></div>
+      <div aria-hidden="true" data-reveal="fade" data-delay="120" style="height: 7px; background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.34) 0 1px, rgba(255,255,255,0) 1px 34px); margin-bottom: clamp(10px, 1.4vw, 18px);"></div>
+      <div data-quadgrid="1" style="display: grid; gap: 1px; background: rgba(255,255,255,0.2);">
+        <div class="eg-x5" data-reveal="up" data-delay="0" style="min-width: 0; position: relative; background: var(--eg-deep-blue); padding: clamp(30px, 3.2vw, 48px) clamp(18px, 1.8vw, 28px) clamp(10px, 1.2vw, 18px); transition: background 260ms ease, opacity 600ms cubic-bezier(.16,.84,.44,1) 0ms, transform 600ms cubic-bezier(.16,.84,.44,1) 0ms;">
+          <div data-reveal="type" data-delay="120" style="font-weight: 700; font-size: clamp(46px, 6vw, 96px); line-height: 0.9; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: var(--eg-white);" data-count="100" data-decimals="0" data-suffix="%">100%</div>
+          <div data-reveal="fade" data-delay="400" data-dur="400" style="margin-top: 20px; font-weight: 600; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--eg-white);">IB Pass Rate</div>
+        </div>
+        <div class="eg-x6" data-reveal="up" data-delay="120" style="min-width: 0; position: relative; background: var(--eg-deep-blue); padding: clamp(30px, 3.2vw, 48px) clamp(18px, 1.8vw, 28px) clamp(10px, 1.2vw, 18px); transition: background 260ms ease, opacity 600ms cubic-bezier(.16,.84,.44,1) 120ms, transform 600ms cubic-bezier(.16,.84,.44,1) 120ms;">
+          <div data-reveal="type" data-delay="120" style="font-weight: 700; font-size: clamp(46px, 6vw, 96px); line-height: 0.9; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: var(--eg-white);" data-count="36.9" data-decimals="1">36.9</div>
+          <div data-reveal="fade" data-delay="400" data-dur="400" style="margin-top: 20px; font-weight: 600; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--eg-white);">Average Group Score</div>
+        </div>
+        <div class="eg-x7" data-reveal="up" data-delay="240" style="min-width: 0; position: relative; background: var(--eg-deep-blue); padding: clamp(30px, 3.2vw, 48px) clamp(18px, 1.8vw, 28px) clamp(10px, 1.2vw, 18px); transition: background 260ms ease, opacity 600ms cubic-bezier(.16,.84,.44,1) 240ms, transform 600ms cubic-bezier(.16,.84,.44,1) 240ms;">
+          <div data-reveal="type" data-delay="120" style="font-weight: 700; font-size: clamp(46px, 6vw, 96px); line-height: 0.9; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: var(--eg-white);" data-count="42" data-decimals="0" data-suffix="/45">42/45</div>
+          <div data-reveal="fade" data-delay="400" data-dur="400" style="margin-top: 20px; font-weight: 600; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--eg-white);">Highest In Group</div>
+        </div>
+        <div class="eg-x8" data-reveal="up" data-delay="360" style="min-width: 0; position: relative; background: var(--eg-deep-blue); padding: clamp(30px, 3.2vw, 48px) clamp(18px, 1.8vw, 28px) clamp(10px, 1.2vw, 18px); transition: background 260ms ease, opacity 600ms cubic-bezier(.16,.84,.44,1) 360ms, transform 600ms cubic-bezier(.16,.84,.44,1) 360ms;">
+          <div data-reveal="type" data-delay="120" style="font-weight: 700; font-size: clamp(46px, 6vw, 96px); line-height: 0.9; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: var(--eg-white);" data-count="1" data-decimals="0" data-suffix=" of 7">1 of 7</div>
+          <div data-reveal="fade" data-delay="400" data-dur="400" style="margin-top: 20px; font-weight: 600; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--eg-white);">IB-Allowed Online Schools</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="The Program" style="padding: clamp(64px, 8vw, 120px) clamp(24px, 5vw, 80px); background: var(--eg-white); color: var(--eg-deep-blue);">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(36px, 5vw, 88px);">
+      <div style="display: flex; flex-direction: column; gap: clamp(22px, 2.6vw, 34px);">
+        <div data-reveal="tag" style="display: flex; align-items: center; gap: 14px;">
+          <span style="flex: none; width: 32px; height: 2px; background: var(--eg-apple-green);"></span>
+          <span style="font-family: 'Inter', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--eg-deep-blue); white-space: nowrap;">Eastwood Global // The Program</span>
+        </div>
+        <h2 data-reveal="up" data-delay="80" style="margin: 0; max-width: 15ch; font-weight: 700; font-size: clamp(36px, 4.6vw, 68px); line-height: 0.96; letter-spacing: -0.042em; color: var(--eg-deep-blue);">Built for students aged 14 to 19</h2>
+      </div>
+      <div>
+        <div data-proglist="1" style="display: grid; gap: 0;">
+          <span data-reveal="hair" data-delay="0" style="display: block; height: 1px; background: var(--eg-apple-green);"></span>
+          <div class="eg-x9" data-reveal="up" data-delay="100" style="display: flex; align-items: center; gap: clamp(14px, 1.4vw, 20px); background-color: var(--eg-white); padding: clamp(20px, 2vw, 26px) 0 clamp(20px, 2vw, 26px) 0; font-weight: 500; font-size: clamp(18px, 1.6vw, 24px); line-height: 1.3; letter-spacing: -0.018em; color: var(--eg-deep-blue); text-wrap: pretty; transition: padding 320ms cubic-bezier(.16,.84,.44,1), background-color 260ms ease, opacity 600ms cubic-bezier(.16,.84,.44,1) 100ms, transform 600ms cubic-bezier(.16,.84,.44,1) 100ms;">
+            <svg data-icon-draw="1" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000077" stroke-width="1.75" stroke-linecap="square" style="flex: none;"><rect data-stroke="1" x="2.5" y="4" width="19" height="13"></rect><path data-stroke="1" d="M9 21h6"></path><path data-stroke="1" d="M12 17v4"></path><rect data-pop="1" x="5.5" y="6.5" width="3" height="3" fill="#BDD100" stroke="none"></rect></svg>
+            <span>Live classes taught by real teachers, not a self-paced content library</span>
+          </div>
+          <span data-reveal="hair" data-delay="60" style="display: block; height: 1px; background: var(--eg-apple-green);"></span>
+          <div class="eg-x10" data-reveal="up" data-delay="160" style="display: flex; align-items: center; gap: clamp(14px, 1.4vw, 20px); background-color: var(--eg-white); padding: clamp(20px, 2vw, 26px) 0 clamp(20px, 2vw, 26px) 0; font-weight: 500; font-size: clamp(18px, 1.6vw, 24px); line-height: 1.3; letter-spacing: -0.018em; color: var(--eg-deep-blue); text-wrap: pretty; transition: padding 320ms cubic-bezier(.16,.84,.44,1), background-color 260ms ease, opacity 600ms cubic-bezier(.16,.84,.44,1) 160ms, transform 600ms cubic-bezier(.16,.84,.44,1) 160ms;">
+            <svg data-icon-draw="1" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000077" stroke-width="1.75" stroke-linecap="square" style="flex: none;"><circle data-stroke="1" cx="12" cy="12" r="8.5"></circle><path data-stroke="1" d="M12 1.5v3"></path><path data-stroke="1" d="M12 19.5v3"></path><path data-stroke="1" d="M1.5 12h3"></path><path data-stroke="1" d="M19.5 12h3"></path><rect data-pop="1" x="10" y="10" width="4" height="4" fill="#BDD100" stroke="none"></rect></svg>
+            <span>Esports coaching delivered by GOSU-certified instructors</span>
+          </div>
+          <span data-reveal="hair" data-delay="120" style="display: block; height: 1px; background: var(--eg-apple-green);"></span>
+          <div class="eg-x11" data-reveal="up" data-delay="220" style="display: flex; align-items: center; gap: clamp(14px, 1.4vw, 20px); background-color: var(--eg-white); padding: clamp(20px, 2vw, 26px) 0 clamp(20px, 2vw, 26px) 0; font-weight: 500; font-size: clamp(18px, 1.6vw, 24px); line-height: 1.3; letter-spacing: -0.018em; color: var(--eg-deep-blue); text-wrap: pretty; transition: padding 320ms cubic-bezier(.16,.84,.44,1), background-color 260ms ease, opacity 600ms cubic-bezier(.16,.84,.44,1) 220ms, transform 600ms cubic-bezier(.16,.84,.44,1) 220ms;">
+            <svg data-icon-draw="1" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000077" stroke-width="1.75" stroke-linecap="square" style="flex: none;"><circle data-stroke="1" cx="5.5" cy="6.5" r="2.6"></circle><circle data-stroke="1" cx="18.5" cy="6.5" r="2.6"></circle><path data-stroke="1" d="M7 8.5l3.6 5"></path><path data-stroke="1" d="M17 8.5l-3.6 5"></path><rect data-pop="1" x="9.2" y="14.2" width="5.6" height="5.6" fill="#BDD100" stroke="none"></rect></svg>
+            <span>A branded online community built for Eastwood Global students</span>
+          </div>
+          <span data-reveal="hair" data-delay="180" style="display: block; height: 1px; background: var(--eg-apple-green);"></span>
+          <div class="eg-x12" data-reveal="up" data-delay="280" style="display: flex; align-items: center; gap: clamp(14px, 1.4vw, 20px); background-color: var(--eg-white); padding: clamp(20px, 2vw, 26px) 0 clamp(20px, 2vw, 26px) 0; font-weight: 500; font-size: clamp(18px, 1.6vw, 24px); line-height: 1.3; letter-spacing: -0.018em; color: var(--eg-deep-blue); text-wrap: pretty; transition: padding 320ms cubic-bezier(.16,.84,.44,1), background-color 260ms ease, opacity 600ms cubic-bezier(.16,.84,.44,1) 280ms, transform 600ms cubic-bezier(.16,.84,.44,1) 280ms;">
+            <svg data-icon-draw="1" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000077" stroke-width="1.75" stroke-linecap="square" style="flex: none;"><path data-stroke="1" d="M2.5 5h4.5v6.5h4.5"></path><path data-stroke="1" d="M2.5 19h4.5v-6.5"></path><path data-stroke="1" d="M11.5 12.5h-0.5"></path><rect data-pop="1" x="14" y="9" width="7" height="6" fill="#BDD100" stroke="none"></rect></svg>
+            <span>Weekly gaming events and mini-tournaments</span>
+          </div>
+          <span data-reveal="hair" data-delay="240" style="display: block; height: 1px; background: var(--eg-apple-green);"></span>
+          <div class="eg-x13" data-reveal="up" data-delay="340" style="display: flex; align-items: center; gap: clamp(14px, 1.4vw, 20px); background-color: var(--eg-white); padding: clamp(20px, 2vw, 26px) 0 clamp(20px, 2vw, 26px) 0; font-weight: 500; font-size: clamp(18px, 1.6vw, 24px); line-height: 1.3; letter-spacing: -0.018em; color: var(--eg-deep-blue); text-wrap: pretty; transition: padding 320ms cubic-bezier(.16,.84,.44,1), background-color 260ms ease, opacity 600ms cubic-bezier(.16,.84,.44,1) 340ms, transform 600ms cubic-bezier(.16,.84,.44,1) 340ms;">
+            <svg data-icon-draw="1" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000077" stroke-width="1.75" stroke-linecap="square" style="flex: none;"><circle data-stroke="1" cx="12" cy="12" r="8.5"></circle><path data-stroke="1" d="M12 7v5.4l3.6 2.1"></path><rect data-pop="1" x="10.6" y="10.6" width="2.8" height="2.8" fill="#BDD100" stroke="none"></rect></svg>
+            <span>A schedule built around training and competition</span>
+          </div>
+          <span data-reveal="hair" data-delay="300" style="display: block; height: 1px; background: var(--eg-apple-green);"></span>
+        </div>
+        <p data-reveal="up" data-delay="320" style="margin: clamp(28px, 3vw, 44px) 0 0; max-width: 56ch; font-weight: 500; font-size: clamp(15px, 1.1vw, 17px); line-height: 1.55; color: var(--text-muted); text-wrap: pretty;">The program launches with a pilot semester of 14 sessions, continuing into the full academic year.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Closing CTA" style="position: relative; padding: clamp(72px, 9vw, 136px) clamp(24px, 5vw, 80px); background: var(--eg-deep-blue); overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.2);">
+    <div aria-hidden="true" data-reveal="fade" style="position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(150deg, rgba(0,0,119,0) 0%, rgba(0,0,119,0) 52%, rgba(189,209,0,0.16) 100%);"></div>
+    <div aria-hidden="true" data-reveal="fade" data-delay="120" style="position: absolute; inset: 0; z-index: 0; background-image: url('assets/cta-band-quiet.png'); background-size: cover; background-position: 60% 70%; opacity: 0.4; -webkit-mask-image: linear-gradient(270deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0) 82%); mask-image: linear-gradient(270deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0) 82%);"></div>
+    <div aria-hidden="true" style="position: absolute; top: 0; right: -4%; z-index: 0; width: min(56%, 660px); height: 100%; background-image: url('assets/pattern-slash-dark.png'); background-size: 120px 60px; background-repeat: repeat; opacity: 0.14; -webkit-mask-image: linear-gradient(270deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 46%, rgba(0,0,0,0) 88%); mask-image: linear-gradient(270deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 46%, rgba(0,0,0,0) 88%);"></div>
+    <div style="position: relative; z-index: 1; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0;">
+      <span data-reveal="rule" aria-hidden="true" style="width: 56px; height: 3px; background: var(--eg-apple-green); margin-bottom: clamp(26px, 3vw, 40px);"></span>
+      <h2 data-reveal="type" style="margin: 0; max-width: 20ch; font-weight: 700; font-size: clamp(36px, 5.4vw, 84px); line-height: 0.92; letter-spacing: -0.045em; color: var(--eg-white); text-wrap: balance;">Enrollment for the pilot semester is open now.</h2>
+      <p data-reveal="up" data-delay="90" style="margin: clamp(20px, 2.4vw, 32px) 0 0; max-width: 46ch; font-weight: 400; font-size: clamp(17px, 1.35vw, 20px); line-height: 1.5; color: rgba(255,255,255,0.66); text-wrap: pretty;">Book a discovery call and see how the schedule works around your training and competition calendar.</p>
+      <div data-reveal="up" data-delay="170" style="margin-top: clamp(32px, 3.6vw, 52px);">
+        <a class="eg-btn eg-btn--xl" href="https://www.eastwood.global/enquire-now-form?utm_source=gosu&utm_medium=landing&utm_content=footer" target="_blank" rel="noopener noreferrer">Book a Discovery Call</a>
+      </div>
+      <p data-reveal="up" data-delay="240" style="margin: clamp(26px, 3vw, 38px) 0 0; display: flex; flex-direction: column; align-items: center; gap: 8px; font-weight: 400; line-height: 1.4; color: rgba(255,255,255,0.5);"><span style="font-weight: 600; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase;">Or email us directly at</span> <a href="mailto:admissions@eastwood.global" style="font-size: clamp(16px, 1.3vw, 19px); font-weight: 500; letter-spacing: -0.01em; color: var(--eg-white); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px;">admissions@eastwood.global</a></p>
+    </div>
+  </section>
+
+  <footer data-screen-label="Footer" style="padding: clamp(40px, 4.2vw, 62px) clamp(24px, 5vw, 80px) clamp(26px, 2.8vw, 40px); background: var(--eg-deep-blue);">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(20px, 2.2vw, 32px);">
+      <img data-reveal="up" loading="lazy" decoding="async" src="assets/eg-gosu-lockup.png" alt="Eastwood Global and GOSU Academy co-brand lockup" style="display: block; align-self: flex-start; flex: none; height: clamp(46px, 4.4vw, 64px); width: auto; mix-blend-mode: screen;">
+      <p data-reveal="up" data-delay="90" style="margin: 0; max-width: 26ch; font-family: 'Bodoni Moda', 'Times New Roman', serif; font-style: italic; font-weight: 400; font-size: clamp(20px, 2.2vw, 32px); line-height: 1.24; color: var(--eg-white); text-wrap: pretty;">A structured, high-performance online school for students whose ambitions extend beyond the traditional classroom.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(24px, 2.8vw, 44px); padding-top: clamp(18px, 2vw, 28px); border-top: 1px solid rgba(255,255,255,0.14);">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <p style="margin: 0; font-weight: 600; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--eg-apple-green);">Eastwood Global</p>
+          <p style="margin: 0; font-weight: 400; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.72);">Av. de Chillon 57<br>1820 Montreux, Switzerland</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <p style="margin: 0; font-weight: 600; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--eg-apple-green);">Contact</p>
+          <p style="margin: 0; font-weight: 400; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.72);"><a href="tel:+41218050591" style="color: rgba(255,255,255,0.72);">+41 21 805 05 91</a><br><a href="mailto:admissions@eastwood.global" style="color: rgba(255,255,255,0.72);">admissions@eastwood.global</a></p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <p style="margin: 0; font-weight: 600; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--eg-apple-green);">Eastwood Global</p>
+          <div style="display: flex; flex-direction: column; gap: 7px; font-size: 15px;">
+            <a href="https://www.eastwood.global/about" style="color: rgba(255,255,255,0.72);">About Us</a>
+            <a href="https://www.eastwood.global/allourprograms" style="color: rgba(255,255,255,0.72);">Academics</a>
+            <a href="https://www.eastwood.global/apply" style="color: rgba(255,255,255,0.72);">Admissions</a>
+            <a href="https://www.eastwood.global/news" style="color: rgba(255,255,255,0.72);">News</a>
+            <a href="https://www.eastwood.global/careers" style="color: rgba(255,255,255,0.72);">Careers</a>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 14px; padding-top: clamp(14px, 1.5vw, 20px); border-top: 1px solid rgba(255,255,255,0.14);">
+        <p style="margin: 0; font-weight: 400; font-size: 13px; color: rgba(255,255,255,0.45);">Copyright © 2026 Eastwood Schools. All rights reserved.</p>
+        <p style="margin: 0; display: flex; flex-wrap: wrap; gap: 10px; font-weight: 400; font-size: 13px; color: rgba(255,255,255,0.45);"><a href="https://www.eastwood.global/legal" style="color: rgba(255,255,255,0.6);">Legal</a><span style="color: rgba(255,255,255,0.28);">|</span><a href="https://www.eastwood.global/privacy-policy" style="color: rgba(255,255,255,0.6);">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar = document.querySelector('[data-stickybar]');
+  var prog = document.querySelector('[data-progress]');
+  var heroH = 700;
+
+  function measureHero() {
+    var hs = document.querySelectorAll('[data-screen-label="Hero"]');
+    for (var i = 0; i < hs.length; i++) { if (hs[i].offsetHeight > 0) { heroH = hs[i].offsetHeight; return; } }
+  }
+
+  function onScroll() {
+    var y = window.scrollY || 0;
+    if (prog) {
+      var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      prog.style.width = Math.min(100, (y / max) * 100).toFixed(2) + '%';
+    }
+    if (bar) bar.style.transform = y > heroH * 0.75 ? 'translateY(0)' : 'translateY(-110%)';
+  }
+
+  measureHero();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', function () { measureHero(); onScroll(); }, { passive: true });
+  onScroll();
+
+  if (reduce) {
+    document.querySelectorAll('[data-herozoom], [data-cue], [data-drift]').forEach(function (el) { el.style.animation = 'none'; });
+    return;
+  }
+
+  document.documentElement.setAttribute('data-motion', 'on');
+
+  document.querySelectorAll('[data-icon-draw]').forEach(function (svg) {
+    svg.querySelectorAll('[data-stroke]').forEach(function (p) {
+      var len = p.getTotalLength ? p.getTotalLength() : 0;
+      if (!len) return;
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+      p.style.transition = 'stroke-dashoffset 780ms cubic-bezier(.16,.84,.44,1)';
+    });
+    svg.querySelectorAll('[data-pop]').forEach(function (p) {
+      p.style.transformBox = 'fill-box';
+      p.style.transformOrigin = 'center';
+      p.style.transform = 'scale(0)';
+      p.style.transition = 'transform 420ms cubic-bezier(.16,.84,.44,1) 380ms';
+    });
+  });
+
+  function count(el) {
+    if (el.dataset.counted) return;
+    el.dataset.counted = '1';
+    var target = parseFloat(el.getAttribute('data-count'));
+    var dec = Number(el.getAttribute('data-decimals') || 0);
+    var suffix = el.getAttribute('data-suffix') || '';
+    var final = target.toFixed(dec) + suffix;
+    if (document.hidden) { el.textContent = final; return; }
+    var dur = 1200, t0 = performance.now();
+    el.textContent = (0).toFixed(dec) + suffix;
+    requestAnimationFrame(function tick(now) {
+      var p = Math.min(1, (now - t0) / dur);
+      var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = p < 1 ? (target * e).toFixed(dec) + suffix : final;
+      if (p < 1) requestAnimationFrame(tick);
+    });
+  }
+
+  function show(el) {
+    el.setAttribute('data-revealed', '1');
+    if (el.hasAttribute('data-count')) count(el);
+    el.querySelectorAll('[data-icon-draw] [data-stroke]').forEach(function (p) { p.style.strokeDashoffset = '0'; });
+    el.querySelectorAll('[data-icon-draw] [data-pop]').forEach(function (p) { p.style.transform = 'scale(1)'; });
+  }
+
+  var els = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) { if (e.isIntersecting) { show(e.target); obs.unobserve(e.target); } });
+    }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  } else {
+    els.forEach(show);
+  }
+
+  function settle() {
+    els.forEach(function (el) {
+      if (el.hasAttribute('data-revealed')) return;
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.92 && r.bottom > 0) show(el);
+    });
+    measureHero();
+    onScroll();
+  }
+  window.addEventListener('load', settle, { once: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(settle);
+})();
+</script>
+</body>
+</html>

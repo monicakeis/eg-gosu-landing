@@ -1,0 +1,22 @@
+/* hover and pseudo-element states lifted from the design source */
+.eg-x1:hover { background-color: var(--eg-paper); background-size: 1px 100%; box-shadow: 0 12px 28px rgba(0,0,119,0.14); transform: translateY(-4px); }
+.eg-x1::after { content: ''; position: absolute; right: 10px; bottom: 10px; width: 9px; height: 9px; border-right: 1px solid rgba(0,0,119,0.3); border-bottom: 1px solid rgba(0,0,119,0.3); }
+.eg-x2:hover { background-color: var(--eg-paper); background-size: 1px 100%; box-shadow: 0 12px 28px rgba(0,0,119,0.14); transform: translateY(-4px); }
+.eg-x2::after { content: ''; position: absolute; right: 10px; bottom: 10px; width: 9px; height: 9px; border-right: 1px solid rgba(0,0,119,0.3); border-bottom: 1px solid rgba(0,0,119,0.3); }
+.eg-x3:hover { background-color: var(--eg-paper); background-size: 1px 100%; box-shadow: 0 12px 28px rgba(0,0,119,0.14); transform: translateY(-4px); }
+.eg-x3::after { content: ''; position: absolute; right: 10px; bottom: 10px; width: 9px; height: 9px; border-right: 1px solid rgba(0,0,119,0.3); border-bottom: 1px solid rgba(0,0,119,0.3); }
+.eg-x4:hover { background-color: var(--eg-paper); background-size: 1px 100%; box-shadow: 0 12px 28px rgba(0,0,119,0.14); transform: translateY(-4px); }
+.eg-x4::after { content: ''; position: absolute; right: 10px; bottom: 10px; width: 9px; height: 9px; border-right: 1px solid rgba(0,0,119,0.3); border-bottom: 1px solid rgba(0,0,119,0.3); }
+.eg-x5:hover { background: #0b0b8f; }
+.eg-x5::before { content: ''; position: absolute; top: 12px; left: 12px; width: 10px; height: 10px; border-top: 1px solid rgba(189,209,0,0.55); border-left: 1px solid rgba(189,209,0,0.55); }
+.eg-x6:hover { background: #0b0b8f; }
+.eg-x6::before { content: ''; position: absolute; top: 12px; left: 12px; width: 10px; height: 10px; border-top: 1px solid rgba(189,209,0,0.55); border-left: 1px solid rgba(189,209,0,0.55); }
+.eg-x7:hover { background: #0b0b8f; }
+.eg-x7::before { content: ''; position: absolute; top: 12px; left: 12px; width: 10px; height: 10px; border-top: 1px solid rgba(189,209,0,0.55); border-left: 1px solid rgba(189,209,0,0.55); }
+.eg-x8:hover { background: #0b0b8f; }
+.eg-x8::before { content: ''; position: absolute; top: 12px; left: 12px; width: 10px; height: 10px; border-top: 1px solid rgba(189,209,0,0.55); border-left: 1px solid rgba(189,209,0,0.55); }
+.eg-x9:hover { background-color: var(--eg-paper); padding-left: 18px; }
+.eg-x10:hover { background-color: var(--eg-paper); padding-left: 18px; }
+.eg-x11:hover { background-color: var(--eg-paper); padding-left: 18px; }
+.eg-x12:hover { background-color: var(--eg-paper); padding-left: 18px; }
+.eg-x13:hover { background-color: var(--eg-paper); padding-left: 18px; }
